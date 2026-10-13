@@ -1,5 +1,5 @@
-Lucid Engine 0.1.0-interim.1
-=============================
+Lucid Engine 0.1.0
+==================
 
 The libraries in this package, their versions and licences. Each licence text
 is in LICENSES/, taken from the upstream source at the commit given here.
@@ -7,70 +7,76 @@ is in LICENSES/, taken from the upstream source at the commit given here.
 Built from upstream source by Vivid's pipeline
 ----------------------------------------------
 
-Pipeline: https://github.com/blurbery/vivid/tree/10faa2a8b45d683380e8e452638be2d9c4c8a3cd/engine
-Vivid's patches are in engine/patches at that commit. Vivid's own patches are
-licensed under LGPL-2.1-or-later, except the libdovi patch, which is MIT. mpv
-patch 0001 is an unchanged upstream mpv commit.
+Pipeline: https://github.com/blurbery/vivid/tree/fcb6782121e72c6ed755336be913c036f4679ddb/engine
+Every library below is built from its upstream source. Vivid's patches are in
+engine/patches at that commit. Vivid's own patches are licensed like the
+library they patch: LGPL-2.1-or-later for mpv, FFmpeg and libbluray, ISC for
+libass, MIT for libdovi and BSD-3-Clause for uavs3d. mpv patch 0001 and
+libass patches 0001 and 0002 are upstream changes, unchanged.
 
 mpv (Libmpv)
-  Version: v0.41.0, commit 41f6a645068483470267271e1d09966ca3b9f413
+  Version: v0.41.0
+  Commit: 41f6a645068483470267271e1d09966ca3b9f413
   Source: https://github.com/mpv-player/mpv
-  Licence: LGPL-2.1-or-later (built with -Dgpl=false), with Vivid's patches
+  Licence: LGPL-2.1-or-later (built with -Dgpl=false)
+  Patches: upstream 0001, unchanged; Vivid's 0002, 0010 to 0016, 0020 to 0025
+    and 0040 (LGPL-2.1-or-later)
   Texts: LICENSES/mpv/LICENSE.LGPL, LICENSES/mpv/Copyright
 
-FFmpeg (Libavcodec, Libavdevice, Libavfilter, Libavformat, Libavutil,
-Libswresample, Libswscale)
-  Version: n8.0.1, commit 894da5ca7d742e4429ffb2af534fcda0103ef593
+FFmpeg (Libavcodec, Libavdevice, Libavfilter,
+Libavformat, Libavutil, Libswresample, Libswscale)
+  Version: n8.0.1
+  Commit: 894da5ca7d742e4429ffb2af534fcda0103ef593
   Source: https://github.com/FFmpeg/FFmpeg
-  Licence: LGPL-2.1-or-later (built without --enable-gpl, --enable-version3
-  or OpenSSL), with Vivid's patches
+  Licence: LGPL-2.1-or-later (built without --enable-gpl, --enable-version3 or
+    OpenSSL; TLS through Apple's Secure Transport)
+  Patches: Vivid's 0001, 0002 and 0010 to 0012 (LGPL-2.1-or-later)
   Texts: LICENSES/FFmpeg/LICENSE.md, LICENSES/FFmpeg/COPYING.LGPLv2.1
   This software is based in part on the work of the Independent JPEG Group.
 
 libass (Libass)
-  Version: 0.17.5, commit 4a05d8127f525943ebf45fdc6497c9e665947f0d
+  Version: 0.17.5
+  Commit: 4a05d8127f525943ebf45fdc6497c9e665947f0d
   Source: https://github.com/libass/libass
   Licence: ISC
+  Patches: upstream 0001 and 0002, unchanged; Vivid's 0010 (ISC)
   Text: LICENSES/libass/COPYING
 
 dav1d (Libdav1d)
-  Version: 1.5.3, commit b546257f770768b2c88258c533da38b91a06f737
+  Version: 1.5.3
+  Commit: b546257f770768b2c88258c533da38b91a06f737
   Source: https://github.com/videolan/dav1d
   Licence: BSD-2-Clause
   Text: LICENSES/dav1d/COPYING
 
 libdovi, the C API of the dolby_vision crate (Libdovi)
-  Version: 3.3.2 (tag libdovi-3.3.2), commit 4fd2b2235c9f93582dd4a00e65ee34a07800afd7
+  Version: 3.3.2 (tag libdovi-3.3.2)
+  Commit: 4fd2b2235c9f93582dd4a00e65ee34a07800afd7
   Source: https://github.com/quietvoid/dovi_tool/tree/4fd2b2235c9f93582dd4a00e65ee34a07800afd7/dolby_vision
-  Licence: MIT, with Vivid's patch (MIT)
+  Licence: MIT
+  Patches: Vivid's 0001 (MIT)
   Text: LICENSES/libdovi/LICENSE
   Libdovi also contains the crates dolby_vision uses with its capi feature,
-  at the versions its Cargo.lock locks, and the Rust 1.98.0 standard library:
-    anyhow 1.0.98         MIT OR Apache-2.0   LICENSES/libdovi/crates/anyhow/LICENSE-MIT
-    bitstream-io 2.6.0    MIT OR Apache-2.0   LICENSES/libdovi/crates/bitstream-io/LICENSE-MIT
-    bitvec 1.0.1          MIT                 LICENSES/libdovi/crates/bitvec/LICENSE.txt
-    bitvec_helpers 3.1.6  MIT                 LICENSES/libdovi/crates/bitvec_helpers/LICENSE
-    crc 3.3.0             MIT OR Apache-2.0   LICENSES/libdovi/crates/crc/LICENSE-MIT
-    crc-catalog 2.4.0     MIT OR Apache-2.0   LICENSES/libdovi/crates/crc-catalog/MIT.txt
-    funty 2.0.0           MIT                 LICENSES/libdovi/crates/funty/LICENSE.txt
-    libc 0.2.172          MIT OR Apache-2.0   LICENSES/libdovi/crates/libc/LICENSE-MIT
-    radium 0.7.0          MIT                 LICENSES/libdovi/crates/radium/LICENSE.txt
-    tap 1.0.1             MIT                 LICENSES/libdovi/crates/tap/LICENSE.txt
+  at the versions its Cargo.lock locks, and the Rust standard library:
+    anyhow 1.0.98         MIT OR Apache-2.0           LICENSES/libdovi/crates/anyhow/LICENSE-MIT
+    bitstream-io 2.6.0    MIT OR Apache-2.0           LICENSES/libdovi/crates/bitstream-io/LICENSE-MIT
+    bitvec 1.0.1          MIT                         LICENSES/libdovi/crates/bitvec/LICENSE.txt
+    bitvec_helpers 3.1.6  MIT                         LICENSES/libdovi/crates/bitvec_helpers/LICENSE
+    crc 3.3.0             MIT OR Apache-2.0           LICENSES/libdovi/crates/crc/LICENSE-MIT
+    crc-catalog 2.4.0     MIT OR Apache-2.0           LICENSES/libdovi/crates/crc-catalog/MIT.txt
+    funty 2.0.0           MIT                         LICENSES/libdovi/crates/funty/LICENSE.txt
+    libc 0.2.172          MIT OR Apache-2.0           LICENSES/libdovi/crates/libc/LICENSE-MIT
+    radium 0.7.0          MIT                         LICENSES/libdovi/crates/radium/LICENSE.txt
+    tap 1.0.1             MIT                         LICENSES/libdovi/crates/tap/LICENSE.txt
     tinyvec 1.9.0         Zlib OR Apache-2.0 OR MIT   LICENSES/libdovi/crates/tinyvec/LICENSE-MIT.md
-    wyz 0.5.1             MIT                 LICENSES/libdovi/crates/wyz/LICENSE.txt
+    wyz 0.5.1             MIT                         LICENSES/libdovi/crates/wyz/LICENSE.txt
     Rust standard library 1.98.0   MIT OR Apache-2.0   LICENSES/libdovi/rust-std/LICENSE-MIT
   For crates under a choice of licences, MIT is used. The standard library's
   own dependencies are listed in the Rust toolchain's COPYRIGHT files.
 
-Interim prebuilt libraries
---------------------------
-
-Not yet built from source by Vivid's pipeline. This release uses the prebuilt
-binaries pinned in engine/pins.ini at the pipeline commit above. A later
-release replaces each one with Vivid's own source build.
-
 FreeType (Libfreetype)
-  Version: 2.12.1 (tag VER-2-12-1), commit e8ebfe988b5f57bfb9a3ecb13c70d9791bce9ecf
+  Version: 2.12.1 (tag VER-2-12-1)
+  Commit: e8ebfe988b5f57bfb9a3ecb13c70d9791bce9ecf
   Source: https://github.com/freetype/freetype
   Licence: FTL (FreeType is FTL OR GPL-2.0-or-later; FTL is used)
   Texts: LICENSES/FreeType/LICENSE.TXT, LICENSES/FreeType/FTL.TXT
@@ -78,100 +84,122 @@ FreeType (Libfreetype)
   (www.freetype.org). All rights reserved.
 
 GNU FriBidi (Libfribidi)
-  Version: 1.0.12 (tag v1.0.12), commit 6428d8469e536bcbb6e12c7b79ba6659371c435a
+  Version: 1.0.12 (tag v1.0.12)
+  Commit: 6428d8469e536bcbb6e12c7b79ba6659371c435a
   Source: https://github.com/fribidi/fribidi
   Licence: LGPL-2.1-or-later
   Text: LICENSES/FriBidi/COPYING
 
 HarfBuzz (Libharfbuzz)
-  Version: 8.1.1, commit 1d665c2b521512cdd56964138fc601debd1f1177
+  Version: 8.1.1
+  Commit: 1d665c2b521512cdd56964138fc601debd1f1177
   Source: https://github.com/harfbuzz/harfbuzz
   Licence: MIT ("Old MIT"); the Universal Shaping Engine data is MIT
-  Texts: LICENSES/HarfBuzz/COPYING, LICENSES/HarfBuzz/ms-use-COPYING (src/ms-use/COPYING)
+  Texts: LICENSES/HarfBuzz/COPYING, LICENSES/HarfBuzz/ms-use-COPYING
+    (src/ms-use/COPYING)
 
 libunibreak (Libunibreak)
-  Version: 6.1 (tag libunibreak_6_1), commit 304585d8e2d63187507368d612c3d5fff1486368
+  Version: 6.1 (release tarball of tag libunibreak_6_1)
+  Commit: 304585d8e2d63187507368d612c3d5fff1486368
   Source: https://github.com/adah1972/libunibreak
   Licence: Zlib
   Text: LICENSES/libunibreak/LICENCE
 
-libplacebo (Libplacebo)
-  Version: 7.351.0 (tag v7.351.0), commit 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
-  Source: https://github.com/haasn/libplacebo
-  Licence: LGPL-2.1-or-later
-  Text: LICENSES/libplacebo/LICENSE
-  Contains, from its 3rdparty submodules at that commit:
-    fast_float 1bf70101536d37fa9954cc4f03fd0903d045a9f3
-      https://github.com/fastfloat/fast_float
-      MIT OR Apache-2.0 OR BSL-1.0 (MIT used)   LICENSES/libplacebo/fast_float/LICENSE-MIT
-    glad 73db193f853e2ee079bf3ca8a64aa2eaf6459043 (generated loader)
-      https://github.com/Dav1dde/glad
-      see LICENSES/libplacebo/glad/LICENSE
-    Vulkan-Headers cacef3039d277c448c89336290ec3937270b0996
-      https://github.com/KhronosGroup/Vulkan-Headers
-      Apache-2.0 OR MIT (MIT used)   LICENSES/libplacebo/Vulkan-Headers/LICENSE.md, MIT.txt
-
 Little CMS (lcms2)
-  Version: 2.17 (tag lcms2.17), commit 5176347635785e53ee5cee92328f76fda766ecc6
+  Version: 2.17 (tag lcms2.17)
+  Commit: 5176347635785e53ee5cee92328f76fda766ecc6
   Source: https://github.com/mm2/Little-CMS
   Licence: MIT
   Text: LICENSES/lcms2/LICENSE
 
-MoltenVK (MoltenVK)
-  Version: 1.4.1 (tag v1.4.1), commit db445ff2042d9ce348c439ad8451112f354b8d2a
-  Source: https://github.com/KhronosGroup/MoltenVK
-  Licence: Apache-2.0
-  Text: LICENSES/MoltenVK/LICENSE
-  Contains, at the revisions in its ExternalRevisions folder:
-    SPIRV-Cross adec7acbf41a988713cdb85f93f26c8ca5ea863e
-      https://github.com/KhronosGroup/SPIRV-Cross
-      Apache-2.0   LICENSES/MoltenVK/SPIRV-Cross/LICENSE
-    SPIRV-Tools 262bdab48146c937467f826699a40da0fdfc0f1a
-      https://github.com/KhronosGroup/SPIRV-Tools
-      Apache-2.0   LICENSES/MoltenVK/SPIRV-Tools/LICENSE
-    SPIRV-Headers b824a462d4256d720bebb40e78b9eb8f78bbb305
-      https://github.com/KhronosGroup/SPIRV-Headers
-      MIT (Khronos terms)   LICENSES/MoltenVK/SPIRV-Headers/LICENSE
-    cereal a56bad8bbb770ee266e930c95d37fff2a5be7fea
-      https://github.com/USCiLab/cereal
-      BSD-3-Clause   LICENSES/MoltenVK/cereal/LICENSE
-    Vulkan-Headers 6aefb8eb95c8e170d0805fd0f2d02832ec1e099a
-      https://github.com/KhronosGroup/Vulkan-Headers
-      Apache-2.0 OR MIT (MIT used)   LICENSES/MoltenVK/Vulkan-Headers/LICENSE.md, MIT.txt
-
 shaderc (Libshaderc_combined)
-  Version: 2025.5 (tag v2025.5), commit c4b0af6c3664cd8b33ffddf452514e02a173b4d6
+  Version: 2025.5 (tag v2025.5)
+  Commit: c4b0af6c3664cd8b33ffddf452514e02a173b4d6
   Source: https://github.com/google/shaderc
   Licence: Apache-2.0
   Text: LICENSES/shaderc/LICENSE
   Contains, at the revisions in its DEPS file:
     glslang 7a47e2531cb334982b2a2dd8513dca0a3de4373d
       https://github.com/KhronosGroup/glslang
-      BSD-3-Clause, BSD-2-Clause, MIT, Apache-2.0 and the other terms
-      in LICENSES/shaderc/glslang/LICENSE.txt
+      BSD-3-Clause, BSD-2-Clause, MIT, Apache-2.0 and other terms, as its
+        licence file gives them: LICENSES/shaderc/glslang/LICENSE.txt
     SPIRV-Tools 262bdab48146c937467f826699a40da0fdfc0f1a
-      Apache-2.0   LICENSES/shaderc/SPIRV-Tools/LICENSE
+      https://github.com/KhronosGroup/SPIRV-Tools
+      Apache-2.0: LICENSES/shaderc/SPIRV-Tools/LICENSE
     SPIRV-Headers b824a462d4256d720bebb40e78b9eb8f78bbb305
-      MIT (Khronos terms)   LICENSES/shaderc/SPIRV-Headers/LICENSE
+      https://github.com/KhronosGroup/SPIRV-Headers
+      MIT (Khronos terms): LICENSES/shaderc/SPIRV-Headers/LICENSE
+
+MoltenVK (MoltenVK)
+  Version: 1.4.1 (tag v1.4.1)
+  Commit: db445ff2042d9ce348c439ad8451112f354b8d2a
+  Source: https://github.com/KhronosGroup/MoltenVK
+  Licence: Apache-2.0
+  Text: LICENSES/MoltenVK/LICENSE
+  Contains, at the revisions in its ExternalRevisions folder:
+    cereal a56bad8bbb770ee266e930c95d37fff2a5be7fea
+      https://github.com/USCiLab/cereal
+      BSD-3-Clause: LICENSES/MoltenVK/cereal/LICENSE
+    Vulkan-Headers 6aefb8eb95c8e170d0805fd0f2d02832ec1e099a
+      https://github.com/KhronosGroup/Vulkan-Headers
+      Apache-2.0 OR MIT (MIT used):
+        LICENSES/MoltenVK/Vulkan-Headers/LICENSE.md,
+        LICENSES/MoltenVK/Vulkan-Headers/MIT.txt
+    SPIRV-Cross adec7acbf41a988713cdb85f93f26c8ca5ea863e
+      https://github.com/KhronosGroup/SPIRV-Cross
+      Apache-2.0: LICENSES/MoltenVK/SPIRV-Cross/LICENSE
+    SPIRV-Tools 262bdab48146c937467f826699a40da0fdfc0f1a
+      https://github.com/KhronosGroup/SPIRV-Tools
+      Apache-2.0: LICENSES/MoltenVK/SPIRV-Tools/LICENSE
+    SPIRV-Headers b824a462d4256d720bebb40e78b9eb8f78bbb305
+      https://github.com/KhronosGroup/SPIRV-Headers
+      MIT (Khronos terms): LICENSES/MoltenVK/SPIRV-Headers/LICENSE
+
+libplacebo (Libplacebo)
+  Version: 7.351.0 (tag v7.351.0)
+  Commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+  Source: https://github.com/haasn/libplacebo
+  Licence: LGPL-2.1-or-later
+  Text: LICENSES/libplacebo/LICENSE
+  Contains, at its 3rdparty submodules at that commit:
+    Vulkan-Headers cacef3039d277c448c89336290ec3937270b0996
+      https://github.com/KhronosGroup/Vulkan-Headers
+      Apache-2.0 OR MIT (MIT used):
+        LICENSES/libplacebo/Vulkan-Headers/LICENSE.md,
+        LICENSES/libplacebo/Vulkan-Headers/MIT.txt
+    fast_float 1bf70101536d37fa9954cc4f03fd0903d045a9f3
+      https://github.com/fastfloat/fast_float
+      MIT OR Apache-2.0 OR BSL-1.0 (MIT used):
+        LICENSES/libplacebo/fast_float/LICENSE-MIT
+    glad (generated loader) 73db193f853e2ee079bf3ca8a64aa2eaf6459043
+      https://github.com/Dav1dde/glad
+      MIT: LICENSES/libplacebo/glad/LICENSE
+  Its jinja and markupsafe submodules only generate code while building and are
+  not part of the framework.
 
 uavs3d (Libuavs3d)
-  Version: 1.2, commit 0e20d2c291853f196c68922a264bcd8471d75b68
+  Version: 1.2
+  Commit: 0e20d2c291853f196c68922a264bcd8471d75b68
   Source: https://github.com/uavs3/uavs3d
   Licence: BSD-3-Clause
+  Patches: Vivid's 0001 (BSD-3-Clause)
   Text: LICENSES/uavs3d/COPYING
 
 libbluray (Libbluray)
-  Version: 1.4.0 (tag 1.4.0), commit 9f07fbb2077be7a40b062bcf2463a9941c2a3b13
+  Version: 1.4.0 (release tarball of tag 1.4.0)
+  Commit: 9f07fbb2077be7a40b062bcf2463a9941c2a3b13
   Source: https://code.videolan.org/videolan/libbluray
   Licence: LGPL-2.1-or-later
+  Patches: Vivid's 0001 (LGPL-2.1-or-later)
   Text: LICENSES/libbluray/COPYING
-  Contains libudfread 1.2.0 (contrib/libudfread submodule at
-  c3cd5cbb097924557ea4d9da1ff76a74620c51a8,
+  Contains libudfread 1.2.0 (its contrib/libudfread submodule,
   https://code.videolan.org/videolan/libudfread), LGPL-2.1-or-later:
   LICENSES/libbluray/libudfread/COPYING
 
 uchardet (Libuchardet)
-  Version: 0.0.8 (tag v0.0.8), commit ae6302a016088ad07177f86d417b20010053632b
+  Version: 0.0.8 (release tarball of tag v0.0.8)
+  Commit: ae6302a016088ad07177f86d417b20010053632b
   Source: https://gitlab.freedesktop.org/uchardet/uchardet
-  Licence: MPL-1.1, GPL-2.0-or-later or LGPL-2.1-or-later; LGPL-2.1-or-later is used
+  Licence: MPL-1.1, GPL-2.0-or-later or LGPL-2.1-or-later; LGPL-2.1-or-later is
+    used
   Text: LICENSES/uchardet/COPYING

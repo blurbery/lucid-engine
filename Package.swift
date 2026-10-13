@@ -1,98 +1,44 @@
 // swift-tools-version:5.9
 //
-// Lucid Engine 0.1.0-interim.1: libmpv, FFmpeg, libass, dav1d and libdovi
-// built from upstream source by Vivid's pipeline at blurbery/vivid
-// 10faa2a8b45d683380e8e452638be2d9c4c8a3cd, plus eleven interim prebuilt
-// libraries. See README.md.
+// Lucid Engine 0.1.0: libmpv, FFmpeg and every library they use, built
+// from upstream source by Vivid's pipeline at blurbery/vivid
+// fcb6782121e72c6ed755336be913c036f4679ddb. See README.md.
 
 import PackageDescription
 
 /// Release assets of this repository, built by Vivid's pipeline.
-let release = "https://github.com/blurbery/lucid-engine/releases/download/v0.1.0-interim.1"
+let release = "https://github.com/blurbery/lucid-engine/releases/download/v0.1.0"
 
-/// A framework Vivid's pipeline builds. The checksum is the SHA-256 of the
-/// zip, as listed in the release's `SHA256SUMS`.
+/// A framework (or MoltenVK's static library) Vivid's pipeline builds. The
+/// checksum is the SHA-256 of the zip, as listed in the release's
+/// `SHA256SUMS`.
 func built(_ name: String, _ checksum: String) -> Target {
     .binaryTarget(name: name, url: "\(release)/\(name).xcframework.zip", checksum: checksum)
 }
 
-/// An interim prebuilt framework, at the `xcframework_url` and
-/// `xcframework_sha256` pinned in Vivid's `engine/pins.ini`. A later release
-/// replaces each one with Vivid's own source build.
-func interim(_ name: String, _ url: String, _ checksum: String) -> Target {
-    .binaryTarget(name: name, url: url, checksum: checksum)
-}
-
 let binaries: [Target] = [
-    // Built from source by Vivid's pipeline.
-    built("Libmpv", "2fd41b68418c61d202109d72e1b151fd9fb75acb457a3f956615320312319cf9"),
-    built("Libavcodec", "2e35124cecf42ddd5e36a2d79965980de370c69e288581dabbdf25f6167288a6"),
-    built("Libavdevice", "35d0755b46f6ab66c5a46b0ac3880d9b45565a6ab851d431af186f62466763d8"),
-    built("Libavfilter", "6462f4a9bd41e3a70a657ed3171c7164147263b76966c8bfd9a23f4b7e2ad4dd"),
-    built("Libavformat", "99b8716bd2add245f953e6196505b489daf38f4c679f2289a58c59efc93e0272"),
-    built("Libavutil", "b194b83f8f2f486325fa958889c929886a9f7bdc9bb3ccf1ef8ee1a4a1cc8854"),
-    built("Libswresample", "9a10997fd5b2277f93f57f4f11e6a6941994b01c7f33f4a1038b227a01addfbd"),
-    built("Libswscale", "9a4b327b69d526364ddd7e7b6dfdda6998aa795178fe4aab22ca10253594623b"),
-    built("Libass", "ff1042a1e988f77d865a87dc1a143865407d3a81d531fcc1d6f7221ca733e5bd"),
-    built("Libdav1d", "ebe6f8ef385fae75fbca66905d270366dd9d1ae67fd8fff76c07d5f719f9fe4e"),
-    built("Libdovi", "393775c5d24b3520aa244cb867087d2a5f6d3f2a5c0a05465bacce59d9c1b37e"),
-
-    // Interim prebuilt binaries, not yet built from source by the pipeline.
-    interim(
-        "Libfreetype",
-        "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libfreetype.xcframework.zip",
-        "f2840aba1ce35e51c0595557eee82c908dac8e32108ecc0661301c06061e051c"
-    ),
-    interim(
-        "Libfribidi",
-        "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libfribidi.xcframework.zip",
-        "4a55513792ef7a17893875f74cc84c56f3657e8768c07a7a96f563a11dc4b743"
-    ),
-    interim(
-        "Libharfbuzz",
-        "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libharfbuzz.xcframework.zip",
-        "91558d8497d9d97bc11eeef8b744d104315893bfee8f17483d8002e14565f84b"
-    ),
-    interim(
-        "Libunibreak",
-        "https://github.com/mpvkit/libass-build/releases/download/0.17.4/Libunibreak.xcframework.zip",
-        "001087c0e927ae00f604422b539898b81eb77230ea7700597b70393cd51e946c"
-    ),
-    interim(
-        "Libplacebo",
-        "https://github.com/mpvkit/libplacebo-build/releases/download/7.351.0-2512/Libplacebo.xcframework.zip",
-        "3b2bd57b82549566963effadf0891a141448d9f89c7d48fca0b8f823b854bac6"
-    ),
-    interim(
-        "lcms2",
-        "https://github.com/mpvkit/lcms2-build/releases/download/2.17.0/lcms2.xcframework.zip",
-        "dc0dce0606f6ab6841a8ec5a6bd4448e2f3ef00661a050460f806c9393dc6982"
-    ),
-    interim(
-        "MoltenVK",
-        "https://github.com/mpvkit/moltenvk-build/releases/download/1.4.1/MoltenVK.xcframework.zip",
-        "9bd1ca1e4563bacd25d6e55d37b10341d50b2601bc2684bc332188e79daa2b79"
-    ),
-    interim(
-        "Libshaderc_combined",
-        "https://github.com/mpvkit/libshaderc-build/releases/download/2025.5.0/Libshaderc_combined.xcframework.zip",
-        "758047b615708575b580eb960a2d083f760a29dc462d6eaa360416c946ce433b"
-    ),
-    interim(
-        "Libuavs3d",
-        "https://github.com/mpvkit/libuavs3d-build/releases/download/1.2.1-fix/Libuavs3d.xcframework.zip",
-        "bd5256081486d16c51c868d755bf70266c424b54c895269580de44ec6707f789"
-    ),
-    interim(
-        "Libbluray",
-        "https://github.com/mpvkit/libbluray-build/releases/download/1.4.0/Libbluray.xcframework.zip",
-        "bc037d34e2b0b5ab7f202fb371f5fb298136cc66fdf406c2172185d06f53f18d"
-    ),
-    interim(
-        "Libuchardet",
-        "https://github.com/mpvkit/libuchardet-build/releases/download/0.0.8-xcode/Libuchardet.xcframework.zip",
-        "503202caa0dafb6996b2443f53408a713b49f6c2d4a26d7856fd6143513a50d7"
-    ),
+    built("Libass", "a98b5c01efe7bc7b303d83c0843086fae9e968f03c7b52b2113ac0e28f36445d"),
+    built("Libavcodec", "88828e68995141a2a2bc55af33ed16b4e7f9a69ec7a214e9d73e6b4bcb921524"),
+    built("Libavdevice", "c241a1d6db3b607e7d3cc119f1cd736bbc2c76d28b9ea8d296eaa846ec1bac8a"),
+    built("Libavfilter", "a3bf2db8bd584a99bb58ce7a60a55f6b51001781dd151a35fbd5702b647ff5a2"),
+    built("Libavformat", "518949709d7d197e73941d0967e445f0e7d7d6346b0091c1e765e8536141621b"),
+    built("Libavutil", "845145378d316e46ba7849c1018bd7aa46eec86c16a9f0ac87533636bd0a0355"),
+    built("Libbluray", "ac5ad1d89a1faa4f67b41fedf8bf8bde1189bc68fc78094a594c3f52fb1c8fdd"),
+    built("Libdav1d", "364cd65dabc5a3c5a58f137b82773b9c30cba05181ea58a65abec0d5e3191875"),
+    built("Libdovi", "731f0052253b52047ce94f9ecddefc81001a49c059c31cd9d45a5a9f4897cbd3"),
+    built("Libfreetype", "59046c5906a795668e39ff673c7617b57a6cd62b3f0715b942747ace27bfa163"),
+    built("Libfribidi", "c273ccf00d36e9197cad74dd930e95cb2043755d9777ac38ff1c32ced471cba6"),
+    built("Libharfbuzz", "fe6cd6ea684167ba9a1f3371247acfb4da487b9ecd5634163c0359b003482d8d"),
+    built("Libmpv", "dda977835937c6c4300143671e1b1b4179f66fa09a5e50695a7fdcda7b99fb61"),
+    built("Libplacebo", "c2d1af5f633e841ee30865c8f474829b66255f577f82820eb405c3c78adb7023"),
+    built("Libshaderc_combined", "94c2b42ef1b3bb82b5537da5395c294b7c648cb8070e5d1804e32f8803100cb7"),
+    built("Libswresample", "e3342fced61539b00770ffb7de9e7a6c1967180b4f25796cda4a6be504639883"),
+    built("Libswscale", "dbee40df00d4c1a15d160fd753da4eec9224a9a424f5b5cc7d173f991bd328f0"),
+    built("Libuavs3d", "208fc6ea5919c2642a544eac8081fa553f1c91e725d5a70414024bbb20dc21c4"),
+    built("Libuchardet", "24883f9146b076ceafe747710cdc5fcf5aec6c2472d327c954404f404b6253fd"),
+    built("Libunibreak", "7df693945c8ffa6d7f745af6a97f4bcced640feee153d7066fd41f505389322d"),
+    built("MoltenVK", "d8faaffe58b0e50eb74d23adc2191050789d0857b90986d7581711d9c821b0dc"),
+    built("lcms2", "988fb88d0a9f5b23916d12c12202244d65847848687beecdfcaff1a2898e2f04"),
 ]
 
 let binaryNames = binaries.map(\.name)
